@@ -269,7 +269,7 @@ map <- addLayersControl(
     "Housing",
     "Legacy Pollution",
     "Transportation",
-    "Waste and Wastewater",
+    "Water and Wastewater",
     "Workforce Development"
   ),
   options = layersControlOptions(collapsed = FALSE)
