@@ -1,4 +1,4 @@
-rm(list = ls()) 
+rm(list = ls())
 
 library(leaflet)
 library(sf)
@@ -96,35 +96,176 @@ ca_community_data_sf <- st_as_sf(ca_community_data)
 #setting up color palate
 pal <- colorNumeric("Reds", domain = ca_community_data$Identified.as.disadvantaged)
 
-map <- leaflet(data = ca_community_data_sf) %>%
-  addTiles() %>%
-  addPolygons(
-    fillColor = ~pal(Identified.as.disadvantaged),
-    weight = 2,
-    opacity = 1,
-    color = "white",
-    dashArray = "3",
+map <- leaflet() %>%
+  addTiles()
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Climate_Change == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
     fillOpacity = 0.7,
-    highlight = highlightOptions(
-      weight = 5,
-      color = "#666",
-      dashArray = "",
-      fillOpacity = 0.7,
-      bringToFront = TRUE
-    ),
-    label = ~paste("Disadvantaged: ", ifelse(Identified.as.disadvantaged, "True", "False"))
-  ) %>%
-  addLayersControl(
-    overlayGroups = c(
-      "Climate Change" = ca_community_data_sf[ca_community_data_sf$Climate_Change, ],
-      "Energy" = ca_community_data_sf[ca_community_data_sf$Energy, ],
-      "Transportation" = ca_community_data_sf[ca_community_data_sf$Transportation, ],
-      "Housing" = ca_community_data_sf[ca_community_data_sf$Housing, ],
-      "Legacy Pollution" = ca_community_data_sf[ca_community_data_sf$Legacy_Pollution, ],
-      "Health" = ca_community_data_sf[ca_community_data_sf$Health, ],
-      "Workforce Development" = ca_community_data_sf[ca_community_data_sf$Workforce_Development, ]
-    ),
-    options = layersControlOptions(collapsed = FALSE)
-  )
+    bringToFront = TRUE
+  ),
+  label = ~paste("Climate Change: ", ifelse(Climate_Change, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Energy == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Energy: ", ifelse(Energy, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Health == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Health: ", ifelse(Health, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Housing == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Housing: ", ifelse(Housing, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Legacy_Pollution == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Legacy Pollution: ", ifelse(Legacy_Pollution, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Transportation == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Transportation: ", ifelse(Transportation, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Waste_and_Wastewater == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Waste and Waste Water: ", ifelse(Waste_and_Wastewater, "True", "False"))
+)
+
+map <- addPolygons(
+  map = map,
+  data = subset(ca_community_data_sf, Workforce_Development == TRUE),
+  fillColor = ~pal(Identified.as.disadvantaged),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE
+  ),
+  label = ~paste("Workforce Development: ", ifelse(Workforce_Development, "True", "False"))
+)
+
+# Add layers control
+map <- addLayersControl(
+  map = map,
+  overlayGroups = c(
+    "Climate Change",
+    "Energy",
+    "Health",
+    "Housing",
+    "Legacy_Pollution",
+    "Transportation",
+    "Waste_and_Wastewater",
+    "Workforce_Development"
+  ),
+  options = layersControlOptions(collapsed = FALSE)
+)
+
 
 print(map)
