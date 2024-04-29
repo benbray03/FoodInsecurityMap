@@ -99,13 +99,14 @@ pal <- colorNumeric("Reds", domain = ca_community_data$Identified.as.disadvantag
 map <- leaflet() %>%
   addTiles()
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Climate_Change == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Climate Change",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -118,13 +119,14 @@ map <- addPolygons(
   label = ~paste("Climate Change: ", ifelse(Climate_Change, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Energy == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Energy",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -137,13 +139,14 @@ map <- addPolygons(
   label = ~paste("Energy: ", ifelse(Energy, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Health == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Health",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -156,13 +159,14 @@ map <- addPolygons(
   label = ~paste("Health: ", ifelse(Health, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Housing == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Housing",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -175,13 +179,14 @@ map <- addPolygons(
   label = ~paste("Housing: ", ifelse(Housing, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Legacy_Pollution == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Legacy Pollution",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -194,13 +199,14 @@ map <- addPolygons(
   label = ~paste("Legacy Pollution: ", ifelse(Legacy_Pollution, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Transportation == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Transportation",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -213,13 +219,14 @@ map <- addPolygons(
   label = ~paste("Transportation: ", ifelse(Transportation, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
-  data = subset(ca_community_data_sf, Waste_and_Wastewater == TRUE),
+map <- map %>%
+  addPolygons(
+  data = subset(ca_community_data_sf, Water_and_Wastewater == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Water and Wastewater",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -229,16 +236,17 @@ map <- addPolygons(
     fillOpacity = 0.7,
     bringToFront = TRUE
   ),
-  label = ~paste("Waste and Waste Water: ", ifelse(Waste_and_Wastewater, "True", "False"))
+  label = ~paste("Water and Waste Water: ", ifelse(Water_and_Wastewater, "True", "False"))
 )
 
-map <- addPolygons(
-  map = map,
+map <- map %>%
+  addPolygons(
   data = subset(ca_community_data_sf, Workforce_Development == TRUE),
   fillColor = ~pal(Identified.as.disadvantaged),
   weight = 2,
   opacity = 1,
   color = "white",
+  group = "Workforce Development",
   dashArray = "3",
   fillOpacity = 0.7,
   highlight = highlightOptions(
@@ -259,10 +267,10 @@ map <- addLayersControl(
     "Energy",
     "Health",
     "Housing",
-    "Legacy_Pollution",
+    "Legacy Pollution",
     "Transportation",
-    "Waste_and_Wastewater",
-    "Workforce_Development"
+    "Waste and Wastewater",
+    "Workforce Development"
   ),
   options = layersControlOptions(collapsed = FALSE)
 )
