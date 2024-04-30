@@ -2,6 +2,8 @@
 > Goals: Provide an interactive map that highlights areas of food insecurity around
 > the US to allow food banks, grocery stores, and more to pinpoint high impact areas. 
 
+An example of this map is available at: 
+https://rpubs.com/pbray/1180092
 
 A layered map that highlights census tracts as disadvantaged according to each of the
 criteria on the Climate and Economic Justice Screening Tool (CEJST).
