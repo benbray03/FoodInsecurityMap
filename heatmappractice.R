@@ -3,6 +3,10 @@ rm(list = ls())
 library(ggplot2)
 library(sp)
 library(sf)
+library(ggmap)
+
+register_google(key = "AIzaSyCgnM6ltD_ZmNGoaMttIKZz7xixwpZnDyw")
+
 
 # Generating more spread out data points
 set.seed(12345)
